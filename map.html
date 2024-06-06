@@ -1,0 +1,278 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My first leaflet</title>
+<!-- link css leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+crossorigin=""/>
+<!-- link js leaflet -->
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+
+<style>
+body {
+padding: 0;
+margin: 0;
+}
+
+html,
+body,
+#map {
+height: 100%;
+width: 100%;
+}
+h1{
+    color: #285185;
+    font-size: xx-large;
+}
+h2{
+    font-size: larger;
+    color: #6F4849;
+}
+h3{
+    font-size: large;
+    color: #6F4849;
+}
+h4{
+    font-size: large;
+}
+hr{
+    border-style: none;
+    border-top-style: dotted;
+    border-color: black;
+    border-width: 5px;
+    width: 5%;
+    }
+body{
+    background-color: #F2F1EB;
+}
+/* ใส่boxให้ตัวเว็บ *คือทำทั้งเอกสาร */
+*{
+    box-sizing: border-box;
+}
+
+header{
+    background-color: #E78895;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: #FBF9F1;
+}
+
+/* nav{
+    float: left;
+    /* ปรับความกว้าง */
+    /* width: 15%; */
+    /* ความสูงลิส */
+    /* height: 10500px;
+    background-color: #CCD9E2;
+    padding: 10px;
+    color: #0C2D57;
+} */ */
+/* จัดนาฟในลิส */
+/* nav ul{
+    /* ไม่ใส่จุดข้างหน้า */
+    /* list-style-type: none; */
+    /* ชิดขอบซ้าย */
+    /* padding: 0;
+    color: #0C2D57;
+} */ */
+/* จัดข้อมูลในขอบข้างๆ */
+article{
+    height: 1800px;
+    /* จัดข้อความข้างล่าง */
+    text-align: left;
+    color: #0C2D57;
+} 
+
+footer{
+
+    background-color: #304D30;
+    padding: 20px;
+    text-align: center;
+    color: #F9F7F7;
+}
+/* responedsive layout : คงขนาดไว้เวลาเปิดในมือถือ */
+/* @media(max-width: 600px){
+    nav,article{
+        width: 200%;
+        height: auto;
+    }
+} */
+
+/* สไตล์ของลิสต์เมนู */
+.menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    }
+    
+    .menu-bar ul li {
+    float: left;
+    }
+    
+    .menu-bar ul li a {
+    display: block;
+    color: rgb(2, 2, 2);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+    
+    /* เพิ่มสีพื้นหลังเมื่อเม้าส์ hover ที่เมนู */
+    .menu-bar ul li a:hover {
+    background-color: #555;
+    }
+
+    .menu-bar {
+        background-color: #FCFFE0;
+        overflow: hidden;
+        }
+        
+
+
+</style>
+
+</head>
+
+<body>
+    <center> <h1>แผนที่🏞️</h1></center>
+    <div class="menu-bar">
+        <ul>
+            <li> <a href="index.html"><img src="https://cdn-icons-png.flaticon.com/128/2413/2413074.png" style="width: 24px; height: 20px;" alt="Home Icon"> หน้าแรก</a></li>
+            <li><a href="map.html"><img src="https://cdn-icons-png.flaticon.com/128/1865/1865153.png" style="width: 22px; height: 19px;" alt="map Icon">จุดเช็คอิน</a></li>
+            <li> <a href="index1.html"><img src="https://cdn-icons-png.flaticon.com/128/4146/4146003.png" style="width: 24px; height: 20px;" alt="park Icon">5 สถานที่ท่องเที่ยวที่น่าสนใจ</a></li>
+            <li> <a href="index2.html"><img src="https://cdn-icons-png.flaticon.com/128/1350/1350120.png" style="width: 24px; height: 20px;" alt="plane Icon">วิธีการเดินทาง</a></li>
+        </ul>
+      </div>
+<!-- แบ่งส่วนหน้าจอ -->
+<div id="map" style="width: 100%; height: 100%"></div>
+<script>
+//set view map
+var map = L.map('map').setView([18.74700982517402, 97.93047059795174], 10);
+
+//import based map
+var OSM = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
+maxZoom: 18,
+attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
+}).addTo(map);
+
+var CyclOSM = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+ maxZoom: 20,
+ attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+ maxZoom: 20,
+ attribution: '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var Topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+ maxZoom: 17,
+ attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+}).addTo(map);
+
+var OPNVKarte = L.tileLayer('https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png', {
+ maxZoom: 18,
+ attribution: 'Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var baseLayers = {
+"OSM" : OSM,
+"CyclOSM": CyclOSM,
+"OpenStreetMap": OpenStreetMap,
+"Topo": Topo,
+"OPNVKarte": OPNVKarte,
+}
+L.control.layers(baseLayers).addTo(map);
+
+//การเพิ่มข้อข้อมูลลงบนแผนที่
+var point = L.marker([18.74700982517402, 97.93047059795174],
+{
+
+draggable: true, // Make the icon dragable
+title: 'แม่ฮ่องสอน', // Add a title
+
+opacity: 1.5 // Adjust the opacity
+}
+).addTo(map);
+
+
+//และข้อมูลลงในแผนที่
+point.bindPopup("<b>แม่ฮ่องสอน</b><br>ภาคเหนือ")
+.openPopup();
+
+//แสดงข้อมูลหลายจุด
+var swu = [
+// ["Faculty of Humanities", 13.747068507702805, 100.56527196576859],
+// ["Faculty of Socail Sciences", 13.744517046460741, 100.56397426787937],
+// ["Grad school", 13.743816164487734, 100.56402242897477],
+// ["Post office", 13.746488112796877, 100.56510554978775],
+// ["Canteen", 13.744359892491058, 100.56640407260664],
+
+["ปางอุ๋ง", 19.498553798464677, 97.90920369522864],
+["บ้านรักไทย", 19.586543052446352, 97.94256548291064],
+["สะพานซูตองเป้", 19.38925001119054, 97.9541830528973],
+["วัดพระธาตุดอยกองมู", 19.300220758619886, 97.9605062990353],
+["ถ้ำน้ำลอด", 19.565525376236295, 98.27916338666444],
+];
+
+//เปลี่ยน icon
+var greenIcon = L.icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/128/2823/2823530.png', 
+
+iconSize: [40, 50], // size of the icon
+shadowSize: [50, 64], // size of the shadow
+iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+shadowAnchor: [4, 62], // the same for the shadow
+popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+for (var i = 0; i < swu.length; i++) {
+marker = new L.marker([swu[i][1], swu[i][2]], {icon: greenIcon})
+.bindPopup(swu[i][0])
+.addTo(map);
+}
+
+//description/Legend
+var legend = L.control({position: "bottomright"});
+legend.onAdd = function(map) {
+var div = L.DomUtil.create("div", "legend");
+div.innerHTML =
+
+'<p><b>แม่ฮ่องสอน</b></p><hr>' +
+'Created by Benyatip and Sarocha<br>' +
+'ID: 298 , 316<br>'+
+'<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Thailand_Mae_Hong_Son_locator_map.svg/375px-Thailand_Mae_Hong_Son_locator_map.svg.png" width = 20%>';
+return div;
+};
+
+
+var legendd = L.control({position: "bottomleft"});
+legendd.onAdd = function(map) {
+var div = L.DomUtil.create("div", "legendd");
+div.innerHTML =
+'<b>คำอธิบายสัญลักษณ์</b><hr>' +
+'<p>สถานที่ท่องเที่ยว</p>'+
+'<img src="https://cdn-icons-png.flaticon.com/128/2823/2823530.png" width = 30%>'; 
+return div;
+};
+legend.addTo(map);
+legendd.addTo(map);
+
+</script>
+<br><br>
+<footer>
+    <h5><center>Presented By</center></h2>
+        <p><center>นางสาวเบญญทิพย์ ฉัตรรัตน์ รหัสนิสิต64103010298
+            <br>นางสาวสโรชา สโรบล รหัสนิสิต64103010316</center></p>
+            <h2><center>THANK YOU</center>
+        <hr>
+        
+    </footer>
+</body>
+
+</html>
+

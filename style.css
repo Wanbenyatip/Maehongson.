@@ -1,0 +1,109 @@
+h1{
+    color: #285185;
+    font-size: xx-large;
+}
+h2{
+    font-size: larger;
+    color: #6F4849;
+}
+h3{
+    font-size: large;
+    color: #6F4849;
+}
+h4{
+    font-size: large;
+}
+hr{
+    border-style: none;
+    border-top-style: dotted;
+    border-color: black;
+    border-width: 5px;
+    width: 5%;
+    }
+body{
+    background-color: #F2F1EB;
+}
+/* ใส่boxให้ตัวเว็บ *คือทำทั้งเอกสาร */
+*{
+    box-sizing: border-box;
+}
+
+header{
+    background-color: #E78895;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: #FBF9F1;
+}
+
+/* nav{
+    float: left;
+    /* ปรับความกว้าง */
+    /* width: 15%; */
+    /* ความสูงลิส */
+    /* height: 10500px;
+    background-color: #CCD9E2;
+    padding: 10px;
+    color: #0C2D57;
+} */ */
+/* จัดนาฟในลิส */
+/* nav ul{
+    /* ไม่ใส่จุดข้างหน้า */
+    /* list-style-type: none; */
+    /* ชิดขอบซ้าย */
+    /* padding: 0;
+    color: #0C2D57;
+} */ */
+/* จัดข้อมูลในขอบข้างๆ */
+article{
+    height: 1800px;
+    /* จัดข้อความข้างล่าง */
+    text-align: left;
+    color: #0C2D57;
+} 
+
+footer{
+
+    background-color: #304D30;
+    padding: 20px;
+    text-align: center;
+    color: #F9F7F7;
+}
+/* responedsive layout : คงขนาดไว้เวลาเปิดในมือถือ */
+/* @media(max-width: 600px){
+    nav,article{
+        width: 200%;
+        height: auto;
+    }
+} */
+
+/* สไตล์ของลิสต์เมนู */
+.menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    }
+    
+    .menu-bar ul li {
+    float: left;
+    }
+    
+    .menu-bar ul li a {
+    display: block;
+    color: rgb(2, 2, 2);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+    
+    /* เพิ่มสีพื้นหลังเมื่อเม้าส์ hover ที่เมนู */
+    .menu-bar ul li a:hover {
+    background-color: #555;
+    }
+
+    .menu-bar {
+        background-color: #FCFFE0;
+        overflow: hidden;
+        }
+        
+
